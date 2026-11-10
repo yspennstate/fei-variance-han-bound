@@ -42,6 +42,12 @@ The scripts need Python 3 and NumPy; the census needs a C compiler. Saved output
   `census/census_n6_ratio_top.txt`: the ten largest HBvar and HBhan values for n = 6
   (columns: statistic, value, f0, f1 as truth tables of the two restrictions in the last variable, H, I).
 
+## Related papers
+
+* [The one-coordinate step in the Fourier entropy-influence conjecture](https://github.com/yspennstate/fourier-entropy-influence-one-coordinate)
+* [Good coordinates in the Fourier entropy-influence conjecture](https://github.com/yspennstate/fei-good-coordinates)
+* [Four equivalent forms of the Fourier entropy-influence conjecture](https://github.com/yspennstate/fei-equivalent-forms)
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
