@@ -1,0 +1,7 @@
+one-coordinate steps checked: 4767
+max |D - E - J| = 2.66e-15
+max J / ((2/ln2) Inf) = 0.8690
+max E / ((2+1/ln2) d + d log2(1+Var/d)) = 0.5986
+max D / (c0 d + d log2(1+Var/d)) = 0.6773
+random adaptive trees: 928, max H / adaptive right side = 0.4836
+trees whose adaptive right side exceeds the fixed-order one: 0 (allowed; Jensen runs one way)

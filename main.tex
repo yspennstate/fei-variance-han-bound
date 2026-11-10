@@ -1,0 +1,308 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\Inf}{\mathrm{Inf}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\E}{\mathbb{E}}
+
+\title{A variance form of Han's bound on the Fourier entropy}
+\author{Yitzchak Shmalo}
+\date{}
+
+\begin{document}
+
+\begin{abstract}
+Han proved that every Boolean function $f$ satisfies
+\[
+H(f)\le \frac{3}{\ln 2}\,I(f)+\sum_k \Inf_k(f)\log_2\frac{4}{\Inf_k(f)},
+\]
+where $H$ is the Fourier entropy and $I$ the total influence. We show that the logarithm may be taken relative to the
+variance:
+\[
+H(f)\le \Bigl(2+\frac{3}{\ln 2}\Bigr)I(f)+\sum_k \Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr).
+\]
+The bound implies Han's up to an additive $I(f)$ and is smaller by a factor of order $k$ for the AND of $k$
+variables. It follows that the Fourier entropy-influence conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$,
+for every function whose influences are all at least $\varepsilon\Var(f)$, and that $H(f)\le I(f)\,(3+3/\ln 2+H(\pi))$,
+where $\pi_k=\Inf_k(f)/I(f)$ is the influence distribution. The proof combines the chain rule for the Fourier entropy
+along a decision tree with a one-coordinate estimate, and an adaptive version holds along any decision tree.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let $f:\{-1,1\}^n\to\{-1,1\}$ have Fourier expansion $f=\sum_S\hat f(S)\chi_S$. By Parseval $\mu(S)=\hat f(S)^2$ is a
+probability distribution on subsets of $[n]$, and we write
+\[
+H(f)=\sum_S\mu(S)\log_2\frac1{\mu(S)},\qquad \Inf_k(f)=\sum_{S\ni k}\mu(S),\qquad I(f)=\sum_k\Inf_k(f),
+\]
+and $\Var(f)=1-\hat f(\emptyset)^2$. The influence $\Inf_k(f)$ is also the probability that flipping $x_k$ changes
+$f(x)$. The Fourier entropy-influence conjecture of Friedgut and Kalai~\cite{FK96} asserts that $H(f)\le C\,I(f)$ for
+an absolute constant $C$.
+
+Several unconditional bounds of the form $H(f)\le I(f)\cdot(\text{a logarithm})$ are known. Subadditivity of
+entropy gives $H(f)\le\sum_k h_2(\Inf_k(f))$, where $h_2$ is the binary entropy; Keller, Mossel and
+Schlank~\cite{KMS} deduce from it that $H(f)\le 2I(f)(1+\log n-\log I(f))$. Kelman, Kindler, Lifshitz, Minzer
+and Safra~\cite{KKLMS} prove that the min-entropy is $O(I(f)\log I(f))$ for functions of constant variance, with a
+matching concentration of the spectrum. Han~\cite{Han} proves
+\begin{equation}\label{eq:han}
+H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
+=\Bigl(2+\frac3{\ln 2}\Bigr)I(f)+\sum_k\Inf_k(f)\log_2\frac1{\Inf_k(f)} .
+\end{equation}
+The last term of~\eqref{eq:han} is large when many influences are small. For functions of small variance this is
+forced, since every influence is at most $2\min(\Pr[f=1],\Pr[f=-1])\le\Var(f)$, and then the logarithm measures the size of $\Var(f)$ rather than how
+the influence is spread. Our main result replaces $1/\Inf_k$ in the logarithm by $\Var(f)/\Inf_k$.
+
+\begin{theorem}\label{thm:main}
+For every $f:\{-1,1\}^n\to\{-1,1\}$,
+\[
+H(f)\le c_0\,I(f)+\sum_{k=1}^n\Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr),
+\]
+where $c_0=2+3/\ln2=6.3281\ldots$ and a term with $\Inf_k(f)=0$ is read as $0$.
+\end{theorem}
+
+Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
+with $c_0+1$ in place of $c_0$. Two consequences follow from $\Var(f)\le I(f)$, the Poincar\'e inequality.
+
+\begin{corollary}\label{cor:eps}
+If $\Inf_k(f)\ge\varepsilon\Var(f)$ for every relevant coordinate $k$, then
+$H(f)\le\bigl(c_0+\log_2(1+1/\varepsilon)\bigr)I(f)$.
+\end{corollary}
+
+\begin{corollary}\label{cor:pi}
+Let $\pi_k=\Inf_k(f)/I(f)$ and $H(\pi)=\sum_k\pi_k\log_2(1/\pi_k)$. Then $H(f)\le\bigl(c_0+1+H(\pi)\bigr)I(f)$.
+\end{corollary}
+
+\begin{proof}
+Since $\Var(f)\le I(f)$ and $\Inf_k(f)\le I(f)$,
+\[
+\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr)\le\log_2\frac{2I(f)}{\Inf_k(f)}=1+\log_2\frac1{\pi_k};
+\]
+multiply by $\Inf_k(f)$ and sum.
+\end{proof}
+
+Corollary~\ref{cor:pi} has the shape of the bound of Keller, Mossel and Schlank, without their term
+$-2I(f)\log I(f)$, which helps when $I(f)>1$ and hurts when $I(f)<1$. Since $t\log_2(1+1/t)\le t+h_2(t)$, the right
+side of Theorem~\ref{thm:main} never exceeds the subadditivity bound $\sum_kh_2(\Inf_k(f))$ by more than $(c_0+1)I(f)$,
+and it can be smaller by a factor of order $\log(1/\Var(f))$ when the variance is small (Example~\ref{ex:and}).
+
+The proof is short. Fixing one coordinate splits the entropy into the average entropy of the two restrictions and
+a drop term $D_k$, and the drop has an exact decomposition into an erasure entropy and a Jensen--Shannon
+divergence~\cite{Shm1}. Lemma~\ref{lem:step} bounds the drop by $\Inf_k\,(c_0+\log_2(1+\Var/\Inf_k))$ for every
+Boolean function. Summing along a decision tree that queries the coordinates in a fixed order expresses $H(f)$ as
+an average of such drops over restrictions, and the bound follows from the concavity of
+$(t,v)\mapsto t\log_2(1+v/t)$. Querying the coordinates adaptively gives a stronger statement
+(Theorem~\ref{thm:adaptive}). Section~\ref{sec:ex} works out examples and records numerical checks.
+
+\section{The drop of one coordinate}\label{sec:drop}
+
+Fix a coordinate $i$ and write $f_{\pm}=f_{i\to\pm1}$ for the two restrictions, functions of the other $n-1$
+variables. Put
+\[
+g=\tfrac12(f_++f_-),\qquad h=\tfrac12(f_+-f_-),
+\]
+so that $f=g+x_ih$, $\hat f(T)=\hat g(T)$ and $\hat f(T\cup\{i\})=\hat h(T)$ for $T\not\ni i$. Since $f$ is Boolean,
+$h(x)\in\{-1,0,1\}$ and $h(x)\ne0$ exactly when $i$ is pivotal at $x$, so
+\begin{equation}\label{eq:h}
+\sum_T\hat h(T)^2=\E h^2=\Inf_i(f),\qquad |\hat h(\emptyset)|\le\E|h|=\Inf_i(f).
+\end{equation}
+Also $g$ is the average of $f$ over $x_i$, so $\Var(g)\le\Var(f)$, that is, $\sum_{T\ne\emptyset}\hat g(T)^2\le\Var(f)$.
+
+Let $U$ have law $\mu$. The drop of $i$ is
+\[
+D_i(f)=H(f)-\tfrac12H(f_+)-\tfrac12H(f_-).
+\]
+The chain rule $H(U)=H(U\setminus\{i\})+H(\mathbf 1[i\in U]\mid U\setminus\{i\})$, together with the fact that the law of
+$U\setminus\{i\}$ is the equal mixture of the spectral distributions of $f_+$ and $f_-$ (as
+$\hat f_\pm(T)=\hat g(T)\pm\hat h(T)$, and $\tfrac12(\hat g+\hat h)^2+\tfrac12(\hat g-\hat h)^2=\hat g^2+\hat h^2$), gives
+\[
+D_i(f)=E_i(f)+J_i(f),
+\]
+where $E_i(f)=H(\mathbf 1[i\in U]\mid U\setminus\{i\})$ and $J_i(f)$ is the Jensen--Shannon divergence between the
+spectral distributions of $f_+$ and $f_-$. In coordinates,
+\[
+E_i(f)=\sum_{T\not\ni i}\Phi\bigl(\hat g(T)^2,\hat h(T)^2\bigr),\qquad
+\Phi(p,q)=p\log_2\frac{p+q}{p}+q\log_2\frac{p+q}{q},
+\]
+with $\Phi(p,0)=\Phi(0,q)=0$. The function $\Phi$ is $(p+q)\,h_2(q/(p+q))$; it is nonnegative, positively homogeneous of
+degree one, concave (it is the perspective of the concave function $h_2$; directly, its Hessian is $-\frac{1}{(p+q)\ln2}\bigl(\begin{smallmatrix}q/p&-1\\-1&p/q\end{smallmatrix}\bigr)\preceq0$), and
+nondecreasing in each argument. A concave function that is homogeneous of degree one is superadditive:
+$\Phi(p+p',q+q')=2\Phi(\frac{p+p'}2,\frac{q+q'}2)\ge\Phi(p,q)+\Phi(p',q')$.
+
+\begin{lemma}[{\cite[Lemma 3]{Shm1}}]\label{lem:jsd}
+$J_i(f)\le\frac2{\ln2}\Inf_i(f)$.
+\end{lemma}
+
+\begin{lemma}\label{lem:step}
+For every Boolean $f$ and every coordinate $i$, with $\delta=\Inf_i(f)$,
+\[
+E_i(f)\le\Bigl(2+\frac1{\ln 2}\Bigr)\delta+\delta\log_2\Bigl(1+\frac{\Var(f)}{\delta}\Bigr),
+\qquad
+D_i(f)\le c_0\,\delta+\delta\log_2\Bigl(1+\frac{\Var(f)}{\delta}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Separate the term $T=\emptyset$ and apply superadditivity to the rest:
+\[
+E_i(f)\le\Phi\bigl(\hat g(\emptyset)^2,\hat h(\emptyset)^2\bigr)+\Phi(A,B),\qquad
+A=\sum_{T\ne\emptyset}\hat g(T)^2\le\Var(f),\quad B=\sum_{T\ne\emptyset}\hat h(T)^2\le\delta,
+\]
+using~\eqref{eq:h}. For the first term, $h_2(x)\le2\sqrt{x(1-x)}$ gives $\Phi(p,q)\le2\sqrt{pq}$, so it is at most
+$2|\hat g(\emptyset)||\hat h(\emptyset)|\le2\delta$ by~\eqref{eq:h} and $|\hat g(\emptyset)|\le1$. For the second,
+monotonicity gives $\Phi(A,B)\le\Phi(\Var(f),\delta)$ and
+\[
+\Phi(V,\delta)=V\log_2\Bigl(1+\frac\delta V\Bigr)+\delta\log_2\Bigl(1+\frac V\delta\Bigr)\le\frac{\delta}{\ln2}+\delta\log_2\Bigl(1+\frac V\delta\Bigr),
+\]
+since $\log_2(1+y)\le y/\ln 2$. This proves the bound on $E_i$; the bound on $D_i$ adds Lemma~\ref{lem:jsd}, and
+$2+1/\ln2+2/\ln2=c_0$.
+\end{proof}
+
+The proof uses only one distinction among the sets $T$, whether $T$ is empty. Up to the term $(2+1/\ln2)\delta$ it
+sharpens the subadditivity estimate $E_i(f)\le h_2(\Inf_i(f))\approx\Inf_i(f)\log_2(1/\Inf_i(f))$ by replacing $1/\Inf_i$ with $\Var/\Inf_i$ inside the
+logarithm.
+
+\section{Summing along a decision tree}\label{sec:tree}
+
+A decision tree that queries coordinates of $f$ until the restricted function is constant defines, for a uniformly
+random input, a random sequence of restrictions $f=f_0,f_1,\dots,f_m$, where $f_j$ is $f$ restricted by the first $j$
+answers and $f_m$ is constant. Let $i_j$ be the coordinate queried at step $j$. Since $H$ of a constant function is
+$0$ and the next answer is uniform given the past, the definition of the drop gives, by induction on the depth,
+\begin{equation}\label{eq:path}
+H(f)=\E\sum_{j\ge1}D_{i_j}(f_{j-1}),\qquad I(f)=\E\sum_{j\ge1}\Inf_{i_j}(f_{j-1}),
+\end{equation}
+the second because $\Inf_k(f)=\tfrac12\Inf_k(f_+)+\tfrac12\Inf_k(f_-)$ for $k\ne i$ and $I(f)=\Inf_i(f)+\tfrac12I(f_+)+\tfrac12I(f_-)$
+(compare the splitting lemma for influences in~\cite[Section 2]{GMP}).
+
+\begin{theorem}\label{thm:adaptive}
+For every Boolean $f$ and every decision tree as above,
+\[
+H(f)\le c_0\,I(f)+\E\sum_{j\ge1}\Inf_{i_j}(f_{j-1})\log_2\Bigl(1+\frac{\Var(f_{j-1})}{\Inf_{i_j}(f_{j-1})}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Apply Lemma~\ref{lem:step} to each term of~\eqref{eq:path} and use the second identity in~\eqref{eq:path}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use the tree that queries $1,2,\dots,n$ in this order, skipping nothing; once $f_{j-1}$ is constant the remaining
+terms vanish. Then $f_{k-1}$ is $f$ with $x_1,\dots,x_{k-1}$ fixed uniformly at random, and
+\[
+\E\,\Inf_k(f_{k-1})=\Inf_k(f),\qquad \E\,\Var(f_{k-1})=\Var(f)-\Var\bigl(\E[f\mid x_1,\dots,x_{k-1}]\bigr)\le\Var(f).
+\]
+The function $\psi(t,v)=t\log_2(1+v/t)$, with $\psi(0,v)=0$, is the perspective of the concave function
+$v\mapsto\log_2(1+v)$, hence jointly concave on $[0,\infty)^2$, and it is nondecreasing in $v$. By Jensen's inequality
+\[
+\E\,\psi\bigl(\Inf_k(f_{k-1}),\Var(f_{k-1})\bigr)\le\psi\bigl(\Inf_k(f),\E\Var(f_{k-1})\bigr)\le\psi\bigl(\Inf_k(f),\Var(f)\bigr).
+\]
+Summing over $k$ and using Theorem~\ref{thm:adaptive} proves the theorem.
+\end{proof}
+
+\begin{remark}
+The same argument with $\Var(f_{j-1})$ replaced by $1$, using the concavity of $t\mapsto t\log_2(1+1/t)$ in place of
+that of $\psi$, gives Han's bound~\eqref{eq:han} up to one unit in the constant. Han's proof runs through the moments
+$\sum_S|\hat f(S)|^{2+2\epsilon}$ of restricted functions, revealed one coordinate at a time, and differentiates at
+$\epsilon=0$; the route above works with the entropy directly.
+\end{remark}
+
+\section{Examples and checks}\label{sec:ex}
+
+\begin{example}\label{ex:and}
+Let $f=\mathrm{AND}_k$ take the value $-1$ only at the all-ones input. Then $\hat f(\emptyset)=1-2^{1-k}$ and
+$\hat f(S)=-2^{1-k}$ for $S\ne\emptyset$, so $\Inf_i(f)=2^{1-k}$, $I(f)=k2^{1-k}$ and
+$\Var(f)=2^{2-k}(1-2^{-k})$. The ratio $\Var(f)/\Inf_i(f)$ is below $2$, and Theorem~\ref{thm:main} gives
+$H(f)\le(c_0+\log_23)\,I(f)<7.92\,I(f)$, while the right side of~\eqref{eq:han} is $(k+1+3/\ln2)\,I(f)$. The true value is
+$H(f)/I(f)=4(k-1)/k+2/(k\ln2)+o(1/k)$, which tends to $4$. The same holds for $\mathrm{OR}_k$.
+\end{example}
+
+\begin{example}
+For majority on $n$ variables, $\Var=1$ and every influence is of order $n^{-1/2}$, so Theorem~\ref{thm:main} and
+Han's bound both give order $\sqrt n\log n$, while $H=O(\sqrt n)$~\cite{OWZ11}; the same happens for balanced tribes.
+For these functions the variance is bounded below and the loss is in the logarithm itself. A heuristic computation
+along the tree that queries the coordinates of majority in order suggests that the adaptive form does not remove it.
+A proof of the conjecture along these lines needs a step estimate $D_i\le C\,\Inf_i$ at some coordinate of each
+restriction, which is the one-coordinate form of the conjecture~\cite{GMP,Shm1}.
+\end{example}
+
+\textit{Numerical checks.} On $1720$ random Boolean functions on $2$ to $10$ variables, with values $-1$ taken
+independently with probability $0.5$, $0.2$, $0.05$ or $0.01$, the ratio of $H(f)$ to the right side of
+Theorem~\ref{thm:main} is at most $0.486$. Over all nonconstant monotone Boolean functions of six variables the maximum of this ratio
+is $0.4735$, and over those of seven variables it is $0.4812$, attained by $\mathrm{OR}_n$ and $\mathrm{AND}_n$; the
+maxima of the ratio of $H(f)$ to the right side of~\eqref{eq:han} are $0.3870$ and $0.3935$. Over $4{,}767$ coordinate steps of random functions on $2$ to $8$
+variables, with $D_i$, $E_i$ and $J_i$ computed separately, the identity $D_i=E_i+J_i$ holds to within $3\cdot10^{-15}$,
+and the three bounds of Lemmas~\ref{lem:jsd} and~\ref{lem:step} are attained to within the factors $0.869$, $0.599$
+and $0.677$; along $928$ random adaptive trees the ratio of $H(f)$ to the right side of Theorem~\ref{thm:adaptive} is
+at most $0.484$. The scripts are in the repository listed below.
+
+\section*{Acknowledgements and funding}
+This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math
+Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}, a shared, persistent
+memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results,
+coordinate who works on what, and audit each other's work. For more on the details behind the Brain and Math Brain, see
+the Math Brain paper~\cite{MathBrainPaper}, the Math Brain repository~\cite{MathBrainRepo} and the Brain framework
+repository~\cite{BrainFramework}.
+
+The research presented in this paper was supported by the European Research Council (ERC) under the European Union's
+Horizon Europe research and innovation programme (grant agreement No.~101041711), by the Simons Foundation as part of
+the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, by Heights Labs, by Convex Nexus
+Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant
+4101/25). Computational resources were provided in part by Google Cloud through its education credits program (credit
+530550103).
+
+\section*{Declaration of competing interest}
+The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital.
+These entities are included in the funding declaration above.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+The paper comes out of Math Brain, an ongoing project on the use of AI systems for research mathematics, and its
+results were developed with the Brain~\cite{BrainFramework} and Math Brain~\cite{MathBrainRepo}. In November 2026 a
+Claude Fable agent (Anthropic), connected to the Brain and working alongside Codex agents running OpenAI's GPT-6.1 on
+the same problem, derived the decomposition of the drop, the path formula and the one-coordinate estimate of
+Lemma~\ref{lem:step}; a Codex agent refereed the estimate and found the shorter bound for the empty set. Claude Opus 5.5
+(Anthropic) searched the literature, proved Theorems~\ref{thm:main} and~\ref{thm:adaptive} and the corollaries, wrote
+the random-function check, prepared the manuscript and audited it; a second Claude Opus 5.5 agent ran the exhaustive
+computation over monotone functions on six and seven variables. These checks are not peer review. The author directed the work
+and is responsible for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Code and data availability}
+Code and outputs: \url{https://github.com/yspennstate/fei-variance-han-bound}.
+
+The paper is part of the Math Brain project, whose public repository is
+\url{https://github.com/yspennstate/math-brain-public}~\cite{MathBrainRepo}.
+
+\begin{thebibliography}{99}
+\bibitem{FK96} E.~Friedgut, G.~Kalai, Every monotone graph property has a sharp threshold, Proc. Amer. Math. Soc.
+124 (1996), 2993--3002.
+\bibitem{GMP} M.~J.~Gonz\'alez, P.~MacManus, M.~C.~Pereyra, Further evidence towards the Fourier
+entropy-influence conjecture, arXiv:2606.00246, 2026.
+\bibitem{Han} X.~Han, A new bound for the Fourier-entropy-influence conjecture, Combinatorica 45 (2025),
+arXiv:2312.08271.
+\bibitem{KKLMS} E.~Kelman, G.~Kindler, N.~Lifshitz, D.~Minzer, M.~Safra, Towards a proof of the
+Fourier-entropy conjecture?, Geom. Funct. Anal. 30 (2020), 1097--1138.
+\bibitem{KMS} N.~Keller, E.~Mossel, T.~Schlank, A note on the entropy/influence conjecture, Discrete Math. 312
+(2012), 3364--3372.
+\bibitem{OWZ11} R.~O'Donnell, J.~Wright, Y.~Zhou, The Fourier entropy-influence conjecture for certain classes of
+Boolean functions, ICALP 2011.
+\bibitem{Shm1} Y.~Shmalo, The one-coordinate step in the Fourier entropy-influence conjecture,
+\url{https://github.com/yspennstate/fourier-entropy-influence-one-coordinate}, 2026.
+\bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026,
+\url{https://github.com/yspennstate/math-brain-public}.
+\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research},
+October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
+\bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026,
+\url{https://github.com/yspennstate/brain-framework-public}.
+\end{thebibliography}
+
+\end{document}
