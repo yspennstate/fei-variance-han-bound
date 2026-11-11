@@ -55,7 +55,9 @@ Several unconditional bounds of the form $H(f)\le I(f)\cdot(\text{a logarithm})$
 entropy gives $H(f)\le\sum_k h_2(\Inf_k(f))$, where $h_2$ is the binary entropy; Keller, Mossel and
 Schlank~\cite{KMS} deduce from it that $H(f)\le 2I(f)(1+\log n-\log I(f))$. Kelman, Kindler, Lifshitz, Minzer
 and Safra~\cite{KKLMS} prove that the min-entropy is $O(I(f)\log I(f))$ for functions of constant variance, with a
-matching concentration of the spectrum. Han~\cite{Han} proves
+matching concentration of the spectrum. Chakraborty, Kulkarni, Lokam and Saurabh~\cite{CKLS} and Wan, Wright and
+Wu~\cite{WWW} bound $H(f)$ in terms of decision-tree and communication complexity measures, and O'Donnell and
+Tan~\cite{OT13} show that the conjecture is preserved under suitable compositions. Han~\cite{Han} proves
 \begin{equation}\label{eq:han}
 H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
 =\Bigl(2+\frac3{\ln 2}\Bigr)I(f)+\sum_k\Inf_k(f)\log_2\frac1{\Inf_k(f)} .
@@ -99,7 +101,7 @@ side of Theorem~\ref{thm:main} never exceeds the subadditivity bound $\sum_kh_2(
 and it can be smaller by a factor of order $\log(1/\Var(f))$ when the variance is small (Example~\ref{ex:and}).
 
 The proof is short. Fixing one coordinate splits the entropy into the average entropy of the two restrictions and
-a drop term $D_k$, and the drop has an exact decomposition into an erasure entropy and a Jensen--Shannon
+a drop term $D_k$, and the drop has an exact decomposition into an erasure entropy~\cite{VW08} and a Jensen--Shannon
 divergence~\cite{Shm1}. Lemma~\ref{lem:step} bounds the drop by $\Inf_k\,(c_0+\log_2(1+\Var/\Inf_k))$ for every
 Boolean function. Summing along a decision tree that queries the coordinates in a fixed order expresses $H(f)$ as
 an average of such drops over restrictions, and the bound follows from the concavity of
@@ -286,6 +288,8 @@ The paper is part of the Math Brain project, whose public repository is
 \begin{thebibliography}{99}
 \bibitem{FK96} E.~Friedgut, G.~Kalai, Every monotone graph property has a sharp threshold, Proc. Amer. Math. Soc.
 124 (1996), 2993--3002.
+\bibitem{CKLS} S.~Chakraborty, R.~Kulkarni, S.~V.~Lokam, N.~Saurabh, Upper bounds on Fourier entropy, Theoret.
+Comput. Sci. 654 (2016), 92--112.
 \bibitem{GMP} M.~J.~Gonz\'alez, P.~MacManus, M.~C.~Pereyra, Further evidence towards the Fourier
 entropy-influence conjecture, arXiv:2606.00246, 2026.
 \bibitem{Han} X.~Han, A new bound for the Fourier-entropy-influence conjecture, Combinatorica 45 (2025),
@@ -294,10 +298,15 @@ arXiv:2312.08271.
 Fourier-entropy conjecture?, Geom. Funct. Anal. 30 (2020), 1097--1138.
 \bibitem{KMS} N.~Keller, E.~Mossel, T.~Schlank, A note on the entropy/influence conjecture, Discrete Math. 312
 (2012), 3364--3372.
+\bibitem{OT13} R.~O'Donnell, L.-Y.~Tan, A composition theorem for the Fourier entropy-influence conjecture, ICALP 2013.
 \bibitem{OWZ11} R.~O'Donnell, J.~Wright, Y.~Zhou, The Fourier entropy-influence conjecture for certain classes of
-Boolean functions, ICALP 2011.
+Boolean functions, ICALP 2011, Lecture Notes in Comput. Sci. 6755, 330--341.
 \bibitem{Shm1} Y.~Shmalo, The one-coordinate step in the Fourier entropy-influence conjecture,
 \url{https://github.com/yspennstate/fourier-entropy-influence-one-coordinate}, 2026.
+\bibitem{VW08} S.~Verd\'u, T.~Weissman, The information lost in erasures, IEEE Trans. Inform. Theory 54 (2008),
+5030--5058.
+\bibitem{WWW} A.~Wan, J.~Wright, C.~Wu, Decision trees, protocols and the entropy-influence conjecture, ITCS 2014,
+arXiv:1312.3003.
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026,
 \url{https://github.com/yspennstate/math-brain-public}.
 \bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research},
