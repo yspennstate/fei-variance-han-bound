@@ -6,6 +6,7 @@ This repository contains a short paper on the Fourier entropy-influence (FEI) co
 together with the scripts behind every numerical value in it.
 
 Paper: [main.pdf](main.pdf) (source [main.tex](main.tex)).
+Zenodo: [doi:10.5281/zenodo.24126593](https://doi.org/10.5281/zenodo.24126593).
 
 ## Summary
 
