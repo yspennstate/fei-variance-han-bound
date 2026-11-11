@@ -57,7 +57,10 @@ Schlank~\cite{KMS} deduce from it that $H(f)\le 2I(f)(1+\log n-\log I(f))$. Kelm
 and Safra~\cite{KKLMS} prove that the min-entropy is $O(I(f)\log I(f))$ for functions of constant variance, with a
 matching concentration of the spectrum. Chakraborty, Kulkarni, Lokam and Saurabh~\cite{CKLS} and Wan, Wright and
 Wu~\cite{WWW} bound $H(f)$ in terms of decision-tree and communication complexity measures, and O'Donnell and
-Tan~\cite{OT13} show that the conjecture is preserved under suitable compositions. Han~\cite{Han} proves
+Tan~\cite{OT13} show that the conjecture is preserved under suitable compositions. Arunachalam, Chakraborty,
+Kouck\'y, Saurabh and de Wolf~\cite{ACKSW} bound $H(f)$ by twice the average unambiguous parity-certificate
+complexity. Han~\cite[Theorem~1]{Han} proves $H(f)=O\bigl(I(f)+\sum_k\Inf_k(f)\log(1/\Inf_k(f))\bigr)$, and the last
+display of his proof gives the explicit form
 \begin{equation}\label{eq:han}
 H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
 =\Bigl(2+\frac3{\ln 2}\Bigr)I(f)+\sum_k\Inf_k(f)\log_2\frac1{\Inf_k(f)} .
@@ -76,7 +79,7 @@ where $c_0=2+3/\ln2=6.3281\ldots$ and a term with $\Inf_k(f)=0$ is read as $0$.
 
 Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
 with $c_0+1$ in place of $c_0$. Two consequences follow. The first is immediate from the theorem; the second also uses
-$\Var(f)\le I(f)$, the Poincar\'e inequality.
+$\Var(f)\le I(f)$, the Poincar\'e inequality~\cite[Chapter~2]{ODo}.
 
 \begin{corollary}\label{cor:eps}
 If $\Inf_k(f)\ge\varepsilon\Var(f)$ for every relevant coordinate $k$, then
@@ -241,7 +244,7 @@ restriction, which is the one-coordinate form of the conjecture~\cite{GMP,Shm1}.
 
 \textit{Numerical checks.} On $1720$ random Boolean functions on $2$ to $10$ variables, with values $-1$ taken
 independently with probability $0.5$, $0.2$, $0.05$ or $0.01$, the ratio of $H(f)$ to the right side of
-Theorem~\ref{thm:main} is at most $0.486$. Over all nonconstant monotone Boolean functions of six variables the maximum of this ratio
+Theorem~\ref{thm:main} is at most $0.486$ on each of these functions. Over all nonconstant monotone Boolean functions of six variables the maximum of this ratio
 is $0.4735$, and over those of seven variables it is $0.4812$, attained by $\mathrm{OR}_n$ and $\mathrm{AND}_n$; the
 maxima of the ratio of $H(f)$ to the right side of~\eqref{eq:han} are $0.3870$ and $0.3935$. Over $4{,}767$ coordinate steps of random functions on $2$ to $8$
 variables, with $D_i$, $E_i$ and $J_i$ computed separately, the identity $D_i=E_i+J_i$ holds to within $3\cdot10^{-15}$,
@@ -288,6 +291,8 @@ The paper is part of the Math Brain project, whose public repository is
 \begin{thebibliography}{99}
 \bibitem{FK96} E.~Friedgut, G.~Kalai, Every monotone graph property has a sharp threshold, Proc. Amer. Math. Soc.
 124 (1996), 2993--3002.
+\bibitem{ACKSW} S.~Arunachalam, S.~Chakraborty, M.~Kouck\'y, N.~Saurabh, R.~de~Wolf, Improved bounds on Fourier
+entropy and min-entropy, ACM Trans. Comput. Theory 13 (2021), Art.~22; STACS 2020, arXiv:1809.09819.
 \bibitem{CKLS} S.~Chakraborty, R.~Kulkarni, S.~V.~Lokam, N.~Saurabh, Upper bounds on Fourier entropy, Theoret.
 Comput. Sci. 654 (2016), 92--112.
 \bibitem{GMP} M.~J.~Gonz\'alez, P.~MacManus, M.~C.~Pereyra, Further evidence towards the Fourier
@@ -298,6 +303,7 @@ arXiv:2312.08271.
 Fourier-entropy conjecture?, Geom. Funct. Anal. 30 (2020), 1097--1138.
 \bibitem{KMS} N.~Keller, E.~Mossel, T.~Schlank, A note on the entropy/influence conjecture, Discrete Math. 312
 (2012), 3364--3372.
+\bibitem{ODo} R.~O'Donnell, \emph{Analysis of Boolean Functions}, Cambridge University Press, 2014.
 \bibitem{OT13} R.~O'Donnell, L.-Y.~Tan, A composition theorem for the Fourier entropy-influence conjecture, ICALP 2013.
 \bibitem{OWZ11} R.~O'Donnell, J.~Wright, Y.~Zhou, The Fourier entropy-influence conjecture for certain classes of
 Boolean functions, ICALP 2011, Lecture Notes in Comput. Sci. 6755, 330--341.
