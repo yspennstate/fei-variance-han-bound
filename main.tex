@@ -1,6 +1,7 @@
 \documentclass[11pt]{amsart}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1.1in]{geometry}
+\usepackage{array,longtable,booktabs}
 \usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}
@@ -43,7 +44,7 @@ along a decision tree with a one-coordinate estimate, and an adaptive version ho
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 
 Let $f:\{-1,1\}^n\to\{-1,1\}$ have Fourier expansion $f=\sum_S\hat f(S)\chi_S$. By Parseval $\mu(S)=\hat f(S)^2$ is a
 probability distribution on subsets of $[n]$, and we write
@@ -296,6 +297,45 @@ Code and outputs: \url{https://github.com/yspennstate/fei-variance-han-bound}.
 
 The paper is part of the Math Brain project, whose public repository is
 \url{https://github.com/yspennstate/math-brain-public}~\cite{MathBrainRepo}.
+
+\appendix
+\section{Notation}\label{app:notation}
+
+Symbols are listed in the order in which they first appear, and the last column gives that place. The letter $k$
+indexes coordinates, and in $\mathrm{AND}_k$ it is the number of variables; $\varepsilon$ is reused in the remark of
+Section~\ref{sec:tree}, as its row says.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.54\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}@{}}
+\toprule
+Symbol & Meaning & First appears \\
+\midrule
+\endhead
+$f$ & a Boolean function $\{-1,1\}^n\to\{-1,1\}$ & Section~\ref{sec:intro} \\
+$\hat f(S)$, $\chi_S$ & the Fourier coefficient of $f$ at $S\subseteq[n]$, and the character $\prod_{i\in S}x_i$ & Section~\ref{sec:intro} \\
+$\mu$ & the spectral distribution, $\mu(S)=\hat f(S)^2$ & Section~\ref{sec:intro} \\
+$H(f)$ & the Fourier entropy $\sum_S\mu(S)\log_2(1/\mu(S))$ & Section~\ref{sec:intro} \\
+$\Inf_k(f)$ & the influence of coordinate $k$, $\sum_{S\ni k}\mu(S)$ & Section~\ref{sec:intro} \\
+$I(f)$ & the total influence $\sum_k\Inf_k(f)$ & Section~\ref{sec:intro} \\
+$\Var(f)$ & the variance $1-\hat f(\emptyset)^2$ & Section~\ref{sec:intro} \\
+$C$ & an absolute constant, as in $H(f)\le C\,I(f)$ & Section~\ref{sec:intro} \\
+$h_2$ & the binary entropy $h_2(p)=-p\log_2p-(1-p)\log_2(1-p)$ & Section~\ref{sec:intro} \\
+$c_0$ & the constant $2+3/\ln2=6.3281\ldots$ & Theorem~\ref{thm:main} \\
+$\mathrm{AND}_k$, $\mathrm{OR}_k$ & the AND and the OR of $k$ variables, with value $-1$ when true & Section~\ref{sec:intro} \\
+$\varepsilon$ & a lower bound on the influences relative to $\Var(f)$; in the remark of Section~\ref{sec:tree}, the exponent in Han's moments $\sum_S|\hat f(S)|^{2+2\varepsilon}$ & Corollary~\ref{cor:eps} \\
+$\pi_k$, $H(\pi)$ & the influence distribution $\Inf_k(f)/I(f)$, and its entropy $\sum_k\pi_k\log_2(1/\pi_k)$ & Corollary~\ref{cor:pi} \\
+$D_i(f)$ & the drop $H(f)-\tfrac12H(f_+)-\tfrac12H(f_-)$ of coordinate $i$ (written $D_k$ in Section~\ref{sec:intro}) & Section~\ref{sec:intro} \\
+$f_\pm$ & the restrictions $f_{i\to\pm1}$ & Section~\ref{sec:drop} \\
+$g$, $h$ & $\tfrac12(f_++f_-)$ and $\tfrac12(f_+-f_-)$, so that $f=g+x_ih$ & Section~\ref{sec:drop} \\
+$U$ & a random set with law $\mu$ & Section~\ref{sec:drop} \\
+$E_i(f)$ & the erasure entropy $H(\mathbf 1[i\in U]\mid U\setminus\{i\})$ & Section~\ref{sec:drop} \\
+$J_i(f)$ & the Jensen--Shannon divergence between the spectral distributions of $f_+$ and $f_-$ & Section~\ref{sec:drop} \\
+$\Phi(p,q)$ & $p\log_2\frac{p+q}{p}+q\log_2\frac{p+q}{q}=(p+q)\,h_2\bigl(q/(p+q)\bigr)$ & Section~\ref{sec:drop} \\
+$\delta$ & the influence $\Inf_i(f)$ of the coordinate in Lemma~\ref{lem:step} & Lemma~\ref{lem:step} \\
+$A$, $B$, $V$ & $\sum_{T\ne\emptyset}\hat g(T)^2$, $\sum_{T\ne\emptyset}\hat h(T)^2$, and a value of the variance, in the proof of Lemma~\ref{lem:step} & Lemma~\ref{lem:step} \\
+$f_j$, $i_j$, $m$ & the restriction of $f$ by the first $j$ answers of a decision tree, the coordinate queried at step $j$, and the step at which $f_m$ is constant & Section~\ref{sec:tree} \\
+$\psi(t,v)$ & $t\log_2(1+v/t)$, with $\psi(0,v)=0$ & Section~\ref{sec:tree} \\
+\bottomrule
+\end{longtable}
 
 \begin{thebibliography}{99}
 \bibitem{FK96} E.~Friedgut, G.~Kalai, Every monotone graph property has a sharp threshold, Proc. Amer. Math. Soc.
