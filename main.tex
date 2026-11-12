@@ -23,21 +23,17 @@
 \begin{document}
 
 \begin{abstract}
-Han proved that every Boolean function $f$ satisfies
-\[
-H(f)\le \frac{3}{\ln 2}\,I(f)+\sum_k \Inf_k(f)\log_2\frac{4}{\Inf_k(f)},
-\]
-where $H$ is the Fourier entropy and $I$ the total influence. We show that the logarithm may be taken relative to the
+Han bounded the Fourier entropy $H(f)$ of a Boolean function $f$ by $3/\ln2$ times its total influence $I(f)$ plus the
+sum over coordinates of $\Inf_k(f)\log_2(4/\Inf_k(f))$. We show that the logarithm may be taken relative to the
 variance:
 \[
 H(f)\le \Bigl(2+\frac{3}{\ln 2}\Bigr)I(f)+\sum_k \Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr).
 \]
-The bound implies Han's up to an additive $I(f)$ and is smaller by a factor of order $k$ for the AND of $k$
-variables. Written with $\log_2(1/\Inf_k(f))$ in the sum, Han's bound has the constant $2+3/\ln 2$ in front of $I(f)$; Li
-and Han lowered it to the sharp value $1/\ln 2$, and neither their bound nor ours implies the other. It follows that the Fourier entropy-influence conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$,
-for every function whose influences are all at least $\varepsilon\Var(f)$, and that $H(f)\le I(f)\,(3+3/\ln 2+H(\pi))$,
-where $\pi_k=\Inf_k(f)/I(f)$ is the influence distribution. The proof combines the chain rule for the Fourier entropy
-along a decision tree with a one-coordinate estimate, and an adaptive version holds along any decision tree.
+This implies Han's bound up to an additive $I(f)$, is smaller by a factor of the order of the number of variables for
+an AND, and neither implies nor follows from the sharp bound of Li and Han. Hence the Fourier entropy-influence
+conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$, for every function whose influences are all at
+least $\varepsilon\Var(f)$. The proof combines the chain rule for the Fourier entropy along a decision tree with a
+one-coordinate estimate.
 \end{abstract}
 
 \subjclass[2020]{06E30, 42C10, 94A17}
