@@ -32,7 +32,8 @@ variance:
 H(f)\le \Bigl(2+\frac{3}{\ln 2}\Bigr)I(f)+\sum_k \Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr).
 \]
 The bound implies Han's up to an additive $I(f)$ and is smaller by a factor of order $k$ for the AND of $k$
-variables. It follows that the Fourier entropy-influence conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$,
+variables. Written with $\log_2(1/\Inf_k(f))$ in the sum, Han's bound has the constant $2+3/\ln 2$ in front of $I(f)$; Li
+and Han lowered it to the sharp value $1/\ln 2$, and neither their bound nor ours implies the other. It follows that the Fourier entropy-influence conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$,
 for every function whose influences are all at least $\varepsilon\Var(f)$, and that $H(f)\le I(f)\,(3+3/\ln 2+H(\pi))$,
 where $\pi_k=\Inf_k(f)/I(f)$ is the influence distribution. The proof combines the chain rule for the Fourier entropy
 along a decision tree with a one-coordinate estimate, and an adaptive version holds along any decision tree.
@@ -57,7 +58,8 @@ Schlank~\cite{KMS} deduce from it that $H(f)\le 2I(f)(1+\log n-\log I(f))$. Kelm
 and Safra~\cite{KKLMS} prove that the min-entropy is $O(I(f)\log I(f))$ for functions of constant variance, with a
 matching concentration of the spectrum. Chakraborty, Kulkarni, Lokam and Saurabh~\cite{CKLS} and Wan, Wright and
 Wu~\cite{WWW} bound $H(f)$ in terms of decision-tree and communication complexity measures, and O'Donnell and
-Tan~\cite{OT13} show that the conjecture is preserved under suitable compositions. Arunachalam, Chakraborty,
+Tan~\cite{OT13} show that the conjecture is preserved under suitable compositions; it holds for every linear
+threshold function~\cite{ShmLTF}. Arunachalam, Chakraborty,
 Kouck\'y, Saurabh and de Wolf~\cite{ACKSW} bound $H(f)$ by twice the average unambiguous parity-certificate
 complexity. Han~\cite[Theorem~1]{Han} proves $H(f)=O\bigl(I(f)+\sum_k\Inf_k(f)\log(1/\Inf_k(f))\bigr)$, and the last
 display of his proof gives the explicit form
@@ -65,7 +67,9 @@ display of his proof gives the explicit form
 H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
 =\Bigl(2+\frac3{\ln 2}\Bigr)I(f)+\sum_k\Inf_k(f)\log_2\frac1{\Inf_k(f)} .
 \end{equation}
-The last term of~\eqref{eq:han} is large when many influences are small. For functions of small variance this is
+Li and Han~\cite{LH25} proved, by an information-theoretic argument, that the constant $2+3/\ln 2$
+in~\eqref{eq:han} may be replaced by the sharp value $1/\ln 2$, and that the resulting inequality holds for every
+real-valued $f$ with $\sum_S\hat f(S)^2=1$. The last term of~\eqref{eq:han} is large when many influences are small. For functions of small variance this is
 forced, since every influence is at most $2\min(\Pr[f=1],\Pr[f=-1])\le\Var(f)$, and then the logarithm measures the size of $\Var(f)$ rather than how
 the influence is spread. Our main result replaces $1/\Inf_k$ in the logarithm by $\Var(f)/\Inf_k$.
 
@@ -78,7 +82,10 @@ where $c_0=2+3/\ln2=6.3281\ldots$ and a term with $\Inf_k(f)=0$ is read as $0$.
 \end{theorem}
 
 Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
-with $c_0+1$ in place of $c_0$. Two consequences follow. The first is immediate from the theorem; the second also uses
+with $c_0+1$ in place of $c_0$. Theorem~\ref{thm:main} and the bound of Li and Han~\cite{LH25} do not imply each
+other: for majority their smaller constant makes theirs the smaller bound, while for $\mathrm{AND}_k$
+(Example~\ref{ex:and}) the right side of theirs is $(k-1+1/\ln 2)\,I(f)$ and that of Theorem~\ref{thm:main} is below
+$7.92\,I(f)$. Two consequences follow. The first is immediate from the theorem; the second also uses
 $\Var(f)\le I(f)$, the Poincar\'e inequality~\cite[Chapter~2]{ODo}.
 
 \begin{corollary}\label{cor:eps}
@@ -303,6 +310,8 @@ Art.~4, doi:10.1007/s00493-024-00133-z; arXiv:2312.08271.
 Fourier-entropy conjecture?, Geom. Funct. Anal. 30 (2020), 1097--1138.
 \bibitem{KMS} N.~Keller, E.~Mossel, T.~Schlank, A note on the entropy/influence conjecture, Discrete Math. 312
 (2012), 3364--3372.
+\bibitem{LH25} P.~Li, G.~Han, Strengthening Han's Fourier entropy-influence inequality via an
+information-theoretic proof, arXiv:2512.03117, 2025.
 \bibitem{ODo} R.~O'Donnell, \emph{Analysis of Boolean Functions}, Cambridge University Press, 2014.
 \bibitem{OT13} R.~O'Donnell, L.-Y.~Tan, A composition theorem for the Fourier entropy-influence conjecture, ICALP 2013,
 Lecture Notes in Comput. Sci. 7965, 780--791, doi:10.1007/978-3-642-39206-1\_66.
@@ -310,6 +319,8 @@ Lecture Notes in Comput. Sci. 7965, 780--791, doi:10.1007/978-3-642-39206-1\_66.
 Boolean functions, ICALP 2011, Lecture Notes in Comput. Sci. 6755, 330--341.
 \bibitem{Shm1} Y.~Shmalo, The one-coordinate step in the Fourier entropy-influence conjecture,
 \url{https://github.com/yspennstate/fourier-entropy-influence-one-coordinate}, 2026.
+\bibitem{ShmLTF} Y.~Shmalo, Fourier entropy of threshold functions and their compositions,
+arXiv:2610.16069, 2026.
 \bibitem{VW08} S.~Verd\'u, T.~Weissman, The information lost in erasures, IEEE Trans. Inform. Theory 54 (2008),
 5030--5058.
 \bibitem{WWW} A.~Wan, J.~Wright, C.~Wu, Decision trees, protocols, and the Fourier entropy-influence conjecture, ITCS 2014,
