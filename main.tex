@@ -82,7 +82,7 @@ For every $f:\{-1,1\}^n\to\{-1,1\}$,
 \[
 H(f)\le c_0\,I(f)+\sum_{k=1}^n\Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr),
 \]
-where $c_0=2+3/\ln2=6.3281\ldots$ and a term with $\Inf_k(f)=0$ is read as $0$.
+where $c_0=2+3/\ln2=6.3281\dots$ and a term with $\Inf_k(f)=0$ is read as $0$.
 \end{theorem}
 
 Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
@@ -287,15 +287,13 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 These entities are included in the funding declaration above.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-The paper comes out of Math Brain, an ongoing project on the use of AI systems for research mathematics, and its
-results were developed with the Brain~\cite{BrainFramework} and Math Brain~\cite{MathBrainRepo}. In November 2026 a
+The paper comes out of Math Brain, a project on the use of AI systems in research mathematics~\cite{BrainFramework,MathBrainRepo}. In November 2026 a
 Claude Fable agent (Anthropic), connected to the Brain and working alongside Codex agents running OpenAI's GPT-6.1 on
 the same problem, derived the decomposition of the drop, the path formula and the one-coordinate estimate of
 Lemma~\ref{lem:step}; a Codex agent refereed the estimate and found the shorter bound for the empty set. Claude Opus 5.5
 (Anthropic) searched the literature, proved Theorems~\ref{thm:main} and~\ref{thm:adaptive} and the corollaries, wrote
 the random-function check, prepared the manuscript and audited it; a second Claude Opus 5.5 agent ran the exhaustive
-computation over monotone functions on six and seven variables. These checks are not peer review. The author directed the work
-and is responsible for the content of the paper and for decisions concerning its dissemination.
+computation over monotone functions on six and seven variables. The author directed the work and is responsible for the content of the paper.
 
 \section*{Code and data availability}
 Code and outputs: \url{https://github.com/yspennstate/fei-variance-han-bound}.
@@ -323,7 +321,7 @@ $I(f)$ & the total influence $\sum_k\Inf_k(f)$ & Section~\ref{sec:intro} \\
 $\Var(f)$ & the variance $1-\hat f(\emptyset)^2$ & Section~\ref{sec:intro} \\
 $C$ & an absolute constant, as in $H(f)\le C\,I(f)$ & Section~\ref{sec:intro} \\
 $h_2$ & the binary entropy $h_2(p)=-p\log_2p-(1-p)\log_2(1-p)$ & Section~\ref{sec:intro} \\
-$c_0$ & the constant $2+3/\ln2=6.3281\ldots$ & Theorem~\ref{thm:main} \\
+$c_0$ & the constant $2+3/\ln2=6.3281\dots$ & Theorem~\ref{thm:main} \\
 $\mathrm{AND}_k$, $\mathrm{OR}_k$ & the AND and the OR of $k$ variables, with value $-1$ when true & Section~\ref{sec:intro} \\
 $\varepsilon$ & a lower bound on the influences relative to $\Var(f)$ & Corollary~\ref{cor:eps} \\
 $\tau$ & the exponent in Han's moments $\sum_S|\hat f(S)|^{2+2\tau}$ & Section~\ref{sec:tree} \\
