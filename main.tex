@@ -30,7 +30,7 @@ variance:
 H(f)\le \Bigl(2+\frac{3}{\ln 2}\Bigr)I(f)+\sum_k \Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr).
 \]
 This implies Han's bound up to an additive $I(f)$, is smaller by a factor of the order of the number of variables for
-an AND, and neither implies nor follows from the sharp bound of Li and Han. Hence the Fourier entropy-influence
+an AND, and neither implies nor follows from the bound of Keller, Mossel and Schlank. Hence the Fourier entropy-influence
 conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$, for every function whose influences are all at
 least $\varepsilon\Var(f)$. The proof combines the chain rule for the Fourier entropy along a decision tree with a
 one-coordinate estimate.
@@ -67,8 +67,8 @@ display of his proof gives the explicit form
 H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
 =\Bigl(2+\frac3{\ln 2}\Bigr)I(f)+\sum_k\Inf_k(f)\log_2\frac1{\Inf_k(f)} .
 \end{equation}
-Li and Han~\cite{LH25} proved, by an information-theoretic argument, that the constant $2+3/\ln 2$
-in~\eqref{eq:han} may be replaced by the sharp value $1/\ln 2$, and that the resulting inequality holds for every
+Since $h_2(t)\le t\log_2(1/t)+t/\ln 2$, the bound of Keller, Mossel and Schlank~\cite[Claim~4.1]{KMS} gives~\eqref{eq:han}
+with $1/\ln 2$ in place of $2+3/\ln 2$, for every
 real-valued $f$ with $\sum_S\hat f(S)^2=1$. The last term of~\eqref{eq:han} is large when many influences are small. For functions of small variance this is
 forced, since every influence is at most $2\min(\Pr[f=1],\Pr[f=-1])\le\Var(f)$, and then the logarithm measures the size of $\Var(f)$ rather than how
 the influence is spread. Our main result replaces $1/\Inf_k$ in the logarithm by $\Var(f)/\Inf_k$.
@@ -82,7 +82,7 @@ where $c_0=2+3/\ln2=6.3281\dots$ and a term with $\Inf_k(f)=0$ is read as $0$.
 \end{theorem}
 
 Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
-with $c_0+1$ in place of $c_0$. Theorem~\ref{thm:main} and the bound of Li and Han~\cite{LH25} do not imply each
+with $c_0+1$ in place of $c_0$. Theorem~\ref{thm:main} and this form of the bound of Keller, Mossel and Schlank do not imply each
 other: for majority their smaller constant makes theirs the smaller bound, while for $\mathrm{AND}_k$
 (Example~\ref{ex:and}) the right side of theirs is $(k-1+1/\ln 2)\,I(f)$ and that of Theorem~\ref{thm:main} is below
 $7.92\,I(f)$. Two consequences follow. The first is immediate from the theorem; the second also uses
@@ -351,8 +351,6 @@ Art.~4, doi:10.1007/s00493-024-00133-z; arXiv:2312.08271.
 Fourier-entropy conjecture?, Geom. Funct. Anal. 30 (2020), 1097--1138.
 \bibitem{KMS} N.~Keller, E.~Mossel, T.~Schlank, A note on the entropy/influence conjecture, Discrete Math. 312
 (2012), 3364--3372.
-\bibitem{LH25} P.~Li, G.~Han, Strengthening Han's Fourier entropy-influence inequality via an
-information-theoretic proof, arXiv:2512.03117, 2025.
 \bibitem{ODo} R.~O'Donnell, \emph{Analysis of Boolean Functions}, Cambridge University Press, 2014.
 \bibitem{OT13} R.~O'Donnell, L.-Y.~Tan, A composition theorem for the Fourier entropy-influence conjecture, ICALP 2013,
 Lecture Notes in Comput. Sci. 7965, 780--791, doi:10.1007/978-3-642-39206-1\_66.
