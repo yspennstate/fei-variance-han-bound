@@ -23,17 +23,18 @@
 \begin{document}
 
 \begin{abstract}
-Han bounded the Fourier entropy $H(f)$ of a Boolean function $f$ by $3/\ln2$ times its total influence $I(f)$ plus the
-sum over coordinates of $\Inf_k(f)\log_2(4/\Inf_k(f))$. We show that the logarithm may be taken relative to the
-variance:
+Keller, Mossel and Schlank bound the Fourier entropy $H(f)$ of a Boolean function $f$ by $\sum_k h_2(\Inf_k(f))$, which
+gives $H(f)\le I(f)/\ln2+\sum_k\Inf_k(f)\log_2(1/\Inf_k(f))$, the form of a later bound of Han. The logarithm is large
+when the influences are small, and for functions of small variance they always are. We show that the logarithm may
+be taken relative to the variance:
 \[
 H(f)\le \Bigl(2+\frac{3}{\ln 2}\Bigr)I(f)+\sum_k \Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\Bigr).
 \]
-This implies Han's bound up to an additive $I(f)$, is smaller by a factor of the order of the number of variables for
-an AND, and neither implies nor follows from the bound of Keller, Mossel and Schlank. Hence the Fourier entropy-influence
-conjecture holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$, for every function whose influences are all at
-least $\varepsilon\Var(f)$. The proof combines the chain rule for the Fourier entropy along a decision tree with a
-one-coordinate estimate.
+The right side never exceeds the subadditivity bound by more than $(3+3/\ln2)I(f)$; for an AND of $m$ variables it is
+below $7.92\,I(f)$, while the subadditivity bound is of order $m\,I(f)$. Hence the Fourier entropy-influence conjecture
+holds, with constant $2+3/\ln2+\log_2(1+1/\varepsilon)$, for every function with $\Inf_k(f)\ge\varepsilon\Var(f)$ at
+each coordinate on which it depends. The proof bounds the erasure entropy at each coordinate and sums along a decision
+tree.
 \end{abstract}
 
 \subjclass[2020]{06E30, 42C10, 94A17}
@@ -69,7 +70,8 @@ H(f)\le\frac{3}{\ln 2}\,I(f)+\sum_k\Inf_k(f)\log_2\frac{4}{\Inf_k(f)}
 \end{equation}
 Since $h_2(t)\le t\log_2(1/t)+t/\ln 2$, the bound of Keller, Mossel and Schlank~\cite[Claim~4.1]{KMS} gives~\eqref{eq:han}
 with $1/\ln 2$ in place of $2+3/\ln 2$, for every
-real-valued $f$ with $\sum_S\hat f(S)^2=1$. The last term of~\eqref{eq:han} is large when many influences are small. For functions of small variance this is
+real-valued $f$ with $\sum_S\hat f(S)^2=1$, so the subadditivity bound $\sum_kh_2(\Inf_k(f))$ is the one to compare with.
+In both bounds the last term is large when many influences are small. For functions of small variance this is
 forced, since every influence is at most $2\min(\Pr[f=1],\Pr[f=-1])\le\Var(f)$, and then the logarithm measures the size of $\Var(f)$ rather than how
 the influence is spread. Our main result replaces $1/\Inf_k$ in the logarithm by $\Var(f)/\Inf_k$.
 
@@ -81,15 +83,17 @@ H(f)\le c_0\,I(f)+\sum_{k=1}^n\Inf_k(f)\log_2\Bigl(1+\frac{\Var(f)}{\Inf_k(f)}\B
 where $c_0=2+3/\ln2=6.3281\dots$ and a term with $\Inf_k(f)=0$ is read as $0$.
 \end{theorem}
 
-Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
+Since $t\log_2(1+1/t)\le t+h_2(t)$, the right side of Theorem~\ref{thm:main} never exceeds the subadditivity bound
+$\sum_kh_2(\Inf_k(f))$ by more than $(c_0+1)I(f)$, and it can be smaller by a factor of order $\log(1/\Var(f))$ when the
+variance is small (Example~\ref{ex:and}). Since $\Var(f)\le1$ and $\log_2(1+1/t)\le1+\log_2(1/t)$ for $t\le1$, Theorem~\ref{thm:main} implies~\eqref{eq:han}
 with $c_0+1$ in place of $c_0$. Theorem~\ref{thm:main} and this form of the bound of Keller, Mossel and Schlank do not imply each
-other: for majority their smaller constant makes theirs the smaller bound, while for $\mathrm{AND}_k$
-(Example~\ref{ex:and}) the right side of theirs is $(k-1+1/\ln 2)\,I(f)$ and that of Theorem~\ref{thm:main} is below
+other: for majority their smaller constant makes theirs the smaller bound, while for $\mathrm{AND}_m$
+(Example~\ref{ex:and}) the right side of theirs is $(m-1+1/\ln 2)\,I(f)$ and that of Theorem~\ref{thm:main} is below
 $7.92\,I(f)$. Two consequences follow. The first is immediate from the theorem; the second also uses
 $\Var(f)\le I(f)$, the Poincar\'e inequality~\cite[Chapter~2]{ODo}.
 
 \begin{corollary}\label{cor:eps}
-If $\Inf_k(f)\ge\varepsilon\Var(f)$ for every relevant coordinate $k$, then
+If $\Inf_k(f)\ge\varepsilon\Var(f)$ for every $k$ with $\Inf_k(f)>0$, then
 $H(f)\le\bigl(c_0+\log_2(1+1/\varepsilon)\bigr)I(f)$.
 \end{corollary}
 
@@ -106,21 +110,18 @@ multiply by $\Inf_k(f)$ and sum.
 \end{proof}
 
 Corollary~\ref{cor:pi} has the shape of the bound of Keller, Mossel and Schlank, without their term
-$-2I(f)\log I(f)$, which helps when $I(f)>1$ and hurts when $I(f)<1$. Since $t\log_2(1+1/t)\le t+h_2(t)$, the right
-side of Theorem~\ref{thm:main} never exceeds the subadditivity bound $\sum_kh_2(\Inf_k(f))$ by more than $(c_0+1)I(f)$,
-and it can be smaller by a factor of order $\log(1/\Var(f))$ when the variance is small (Example~\ref{ex:and}).
+$-2I(f)\log I(f)$, which makes their bound smaller when $I(f)>1$ and larger when $I(f)<1$.
 
-The proof is short. Fixing one coordinate splits the entropy into the average entropy of the two restrictions and
-a drop term $D_k$, and the drop has an exact decomposition into an erasure entropy~\cite{VW08} and a Jensen--Shannon
-divergence~\cite{Shm1}. In~\cite{Shm1} the divergence part is bounded by $\frac2{\ln2}\Inf_k$ at every coordinate,
-and the conjecture is shown to be equivalent to a bounded ratio of the erasure entropy to $\Inf_k$ at one coordinate of
-each restriction; that equivalence gives no bound on the erasure entropy where the ratio is large, and so no bound on
-$H(f)$. The new estimate is the bound on the erasure entropy in Lemma~\ref{lem:step}, which holds at every coordinate
-and loses only $\log_2(1+\Var/\Inf_k)$. With it, Lemma~\ref{lem:step} bounds the drop by $\Inf_k\,(c_0+\log_2(1+\Var/\Inf_k))$ for every
-Boolean function. Summing along a decision tree that queries the coordinates in a fixed order expresses $H(f)$ as
-an average of such drops over restrictions, and the bound follows from the concavity of
-$(t,v)\mapsto t\log_2(1+v/t)$. Querying the coordinates adaptively gives a stronger statement
-(Theorem~\ref{thm:adaptive}). Section~\ref{sec:ex} works out examples and records numerical checks.
+The method is that of Gonz\'alez, MacManus and Pereyra~\cite{GMP}. Along a decision tree, $H(f)$ is the average of the
+drops $D_i(f)=H(f)-\frac12H(f_{i\to1})-\frac12H(f_{i\to-1})$ of the queried coordinates, and each drop splits into an
+erasure entropy $E_i(f)$~\cite{VW08} and a Jensen--Shannon divergence $J_i(f)$~\cite[Appendix~B]{GMP}. The divergence is
+at most $\frac2{\ln2}\Inf_i(f)$ at every coordinate~\cite[Lemma~3]{Shm1}, and in~\cite{Shm1} the conjecture is shown to
+be equivalent to a bound $E_i(f)\le C\,\Inf_i(f)$ at one coordinate of each restriction, which says nothing about $E_i$
+at the other coordinates. The new ingredient is a bound on the erasure entropy that holds at every coordinate and loses
+only $\log_2(1+\Var(f)/\Inf_i(f))$ (Lemma~\ref{lem:step}). Summing it along the tree that queries the coordinates in a
+fixed order, and using the concavity of $(t,v)\mapsto t\log_2(1+v/t)$, gives Theorem~\ref{thm:main}; querying adaptively
+gives Theorem~\ref{thm:adaptive}. For $\mathrm{AND}_m$ the bound of Theorem~\ref{thm:main} is below $7.92\,I(f)$
+(Example~\ref{ex:and}).
 
 \section{The drop of one coordinate}\label{sec:drop}
 
@@ -140,14 +141,13 @@ Let $U$ have law $\mu$. The drop of $i$ is
 \[
 D_i(f)=H(f)-\tfrac12H(f_+)-\tfrac12H(f_-).
 \]
-The chain rule $H(U)=H(U\setminus\{i\})+H(\mathbf 1[i\in U]\mid U\setminus\{i\})$, together with the fact that the law of
-$U\setminus\{i\}$ is the equal mixture of the spectral distributions of $f_+$ and $f_-$ (as
-$\hat f_\pm(T)=\hat g(T)\pm\hat h(T)$, and $\tfrac12(\hat g+\hat h)^2+\tfrac12(\hat g-\hat h)^2=\hat g^2+\hat h^2$), gives
+By~\cite[Appendix~B]{GMP} (see also~\cite[Lemma~2]{Shm1}),
 \[
 D_i(f)=E_i(f)+J_i(f),
 \]
-where $E_i(f)=H(\mathbf 1[i\in U]\mid U\setminus\{i\})$ and $J_i(f)$ is the Jensen--Shannon divergence between the
-spectral distributions of $f_+$ and $f_-$. In coordinates,
+where $E_i(f)=H(\mathbf 1[i\in U]\mid U\setminus\{i\})$ is the erasure entropy of $i$~\cite{VW08} and $J_i(f)$ is the
+Jensen--Shannon divergence between the spectral distributions of $f_+$ and $f_-$. Since
+$\hat f(T)^2+\hat f(T\cup\{i\})^2=\hat g(T)^2+\hat h(T)^2$, in coordinates
 \[
 E_i(f)=\sum_{T\not\ni i}\Phi\bigl(\hat g(T)^2,\hat h(T)^2\bigr),\qquad
 \Phi(p,q)=p\log_2\frac{p+q}{p}+q\log_2\frac{p+q}{q},
@@ -186,7 +186,7 @@ since $\log_2(1+y)\le y/\ln 2$. This proves the bound on $E_i$; the bound on $D_
 $2+1/\ln2+2/\ln2=c_0$.
 \end{proof}
 
-The proof uses only one distinction among the sets $T$, whether $T$ is empty. Up to the term $(2+1/\ln2)\delta$ it
+Up to the term $(2+1/\ln2)\delta$ it
 sharpens the subadditivity estimate $E_i(f)\le h_2(\Inf_i(f))\approx\Inf_i(f)\log_2(1/\Inf_i(f))$ by replacing $1/\Inf_i$ with $\Var/\Inf_i$ inside the
 logarithm.
 
@@ -237,31 +237,30 @@ $\tau=0$; the route above works with the entropy directly.
 \section{Examples and checks}\label{sec:ex}
 
 \begin{example}\label{ex:and}
-Let $f=\mathrm{AND}_k$ take the value $-1$ only at the all-ones input. Then $\hat f(\emptyset)=1-2^{1-k}$ and
-$\hat f(S)=-2^{1-k}$ for $S\ne\emptyset$, so $\Inf_i(f)=2^{1-k}$, $I(f)=k2^{1-k}$ and
-$\Var(f)=2^{2-k}(1-2^{-k})$. The ratio $\Var(f)/\Inf_i(f)$ is below $2$, and Theorem~\ref{thm:main} gives
-$H(f)\le(c_0+\log_23)\,I(f)<7.92\,I(f)$, while the right side of~\eqref{eq:han} is $(k+1+3/\ln2)\,I(f)$. The true value is
-$H(f)/I(f)=4(k-1)/k+2/(k\ln2)+o(1/k)$, which tends to $4$. The same holds for $\mathrm{OR}_k$.
+Let $f=\mathrm{AND}_m$ on $m$ variables take the value $-1$ only at the all-ones input. Then $\hat f(\emptyset)=1-2^{1-m}$ and
+$\hat f(S)=-2^{1-m}$ for $S\ne\emptyset$, so $\Inf_i(f)=2^{1-m}$, $I(f)=m2^{1-m}$ and
+$\Var(f)=2^{2-m}(1-2^{-m})$. The ratio $\Var(f)/\Inf_i(f)$ is below $2$, and Theorem~\ref{thm:main} gives
+$H(f)\le(c_0+\log_23)\,I(f)<7.92\,I(f)$, while the right side of~\eqref{eq:han} is $(m+1+3/\ln2)\,I(f)$. The true value is
+$H(f)/I(f)=4(m-1)/m+2/(m\ln2)+o(1/m)$, which tends to $4$. The same holds for $\mathrm{OR}_m$.
 \end{example}
 
 \begin{example}
 For majority on $n$ variables, $\Var=1$ and every influence is of order $n^{-1/2}$, so Theorem~\ref{thm:main} and
 Han's bound both give order $\sqrt n\log n$, while $H=O(\sqrt n)$~\cite{OWZ11}; the same happens for balanced tribes.
-For these functions the variance is bounded below and the loss is in the logarithm itself. A heuristic computation
-along the tree that queries the coordinates of majority in order suggests that the adaptive form does not remove it.
-A proof of the conjecture along these lines needs a step estimate $D_i\le C\,\Inf_i$ at some coordinate of each
-restriction, which is the one-coordinate form of the conjecture~\cite{GMP,Shm1}.
+For these functions the variance is bounded below and the loss is in the logarithm itself. A proof of the conjecture
+along these lines needs a step estimate $D_i\le C\,\Inf_i$ at some coordinate of each restriction; by
+Lemma~\ref{lem:jsd} this is the same as $E_i\le C'\,\Inf_i$ there, the one-coordinate form of the
+conjecture~\cite{GMP,Shm1}.
 \end{example}
 
 \textit{Numerical checks.} On $1720$ random Boolean functions on $2$ to $10$ variables, with values $-1$ taken
 independently with probability $0.5$, $0.2$, $0.05$ or $0.01$, the ratio of $H(f)$ to the right side of
 Theorem~\ref{thm:main} is at most $0.486$ on each of these functions. Over all nonconstant monotone Boolean functions of six variables the maximum of this ratio
-is $0.4735$, and over those of seven variables it is $0.4812$, attained by $\mathrm{OR}_n$ and $\mathrm{AND}_n$; the
+is $0.4735$, and over those of seven variables it is $0.4812$, attained by $\mathrm{OR}_m$ and $\mathrm{AND}_m$; the
 maxima of the ratio of $H(f)$ to the right side of~\eqref{eq:han} are $0.3870$ and $0.3935$. Over $4{,}767$ coordinate steps of random functions on $2$ to $8$
-variables, with $D_i$, $E_i$ and $J_i$ computed separately, the identity $D_i=E_i+J_i$ holds to within $3\cdot10^{-15}$,
-and the three bounds of Lemmas~\ref{lem:jsd} and~\ref{lem:step} are attained to within the factors $0.869$, $0.599$
+variables, with $D_i$, $E_i$ and $J_i$ computed separately, the three bounds of Lemmas~\ref{lem:jsd} and~\ref{lem:step} are attained to within the factors $0.869$, $0.599$
 and $0.677$; along $928$ random adaptive trees the ratio of $H(f)$ to the right side of Theorem~\ref{thm:adaptive} is
-at most $0.484$. The scripts are in the repository listed below.
+at most $0.484$.
 
 \section*{Acknowledgements and funding}
 This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math
@@ -283,13 +282,17 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 These entities are included in the funding declaration above.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-The paper comes out of Math Brain, a project on the use of AI systems in research mathematics~\cite{BrainFramework,MathBrainRepo}. In November 2026 a
-Claude Fable agent (Anthropic), connected to the Brain and working alongside Codex agents running OpenAI's GPT-6.1 on
-the same problem, derived the decomposition of the drop, the path formula and the one-coordinate estimate of
-Lemma~\ref{lem:step}; a Codex agent refereed the estimate and found the shorter bound for the empty set. Claude Opus 5.5
-(Anthropic) searched the literature, proved Theorems~\ref{thm:main} and~\ref{thm:adaptive} and the corollaries, wrote
-the random-function check, prepared the manuscript and audited it; a second Claude Opus 5.5 agent ran the exhaustive
-computation over monotone functions on six and seven variables. The author directed the work and is responsible for the content of the paper.
+The paper comes out of Math Brain, a project on the use of AI systems in research mathematics~\cite{BrainFramework,MathBrainRepo}.
+The results it builds on are those of the mathematicians who proved them: the conjecture is due to Friedgut and
+Kalai~\cite{FK96}, the bound~\eqref{eq:han} to Han~\cite{Han}, the subadditivity bound to Keller, Mossel and
+Schlank~\cite{KMS}, the erasure entropy to Verd\'u and Weissman~\cite{VW08}, and the decomposition of the drop and the
+summation along a decision tree to Gonz\'alez, MacManus and Pereyra~\cite{GMP}. In November 2026 a Claude Fable agent
+(Anthropic), connected to the Brain and working alongside Codex agents running OpenAI's GPT-6.1 on the same problem,
+found the erasure bound of Lemma~\ref{lem:step}, and a Codex agent gave the bound $2\Inf_i(f)$ for the term of the empty
+set. Claude Opus 5.5 (Anthropic) searched the literature, proved Theorems~\ref{thm:main} and~\ref{thm:adaptive} and the
+corollaries, wrote the random-function check and prepared the manuscript; a second Claude Opus 5.5 agent ran the
+exhaustive computation over monotone functions on six and seven variables. The author directed the work and is
+responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Code and data availability}
 Code and outputs: \url{https://github.com/yspennstate/fei-variance-han-bound}, archived on Zenodo with doi:10.5281/zenodo.24125394.
@@ -300,8 +303,9 @@ The paper is part of the Math Brain project, whose public repository is
 \appendix
 \section{Notation}\label{app:notation}
 
-Symbols are listed roughly in the order in which they first appear, and the last column gives that place. The letter $k$
-indexes coordinates, and in $\mathrm{AND}_k$ it is the number of variables.
+Symbols are listed roughly in the order in which they first appear, and the last column gives that place. Coordinates are
+indexed by $k$ in Section~\ref{sec:intro} and by $i$ in Sections~\ref{sec:drop} and~\ref{sec:tree}; $m$ is the number of
+variables of $\mathrm{AND}_m$ and $\mathrm{OR}_m$.
 
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}>{\raggedright\arraybackslash}p{0.54\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}@{}}
 \toprule
@@ -318,11 +322,11 @@ $\Var(f)$ & the variance $1-\hat f(\emptyset)^2$ & Section~\ref{sec:intro} \\
 $C$ & an absolute constant, as in $H(f)\le C\,I(f)$ & Section~\ref{sec:intro} \\
 $h_2$ & the binary entropy $h_2(p)=-p\log_2p-(1-p)\log_2(1-p)$ & Section~\ref{sec:intro} \\
 $c_0$ & the constant $2+3/\ln2=6.3281\dots$ & Theorem~\ref{thm:main} \\
-$\mathrm{AND}_k$, $\mathrm{OR}_k$ & the AND and the OR of $k$ variables, with value $-1$ when true & Section~\ref{sec:intro} \\
+$\mathrm{AND}_m$, $\mathrm{OR}_m$ & the AND and the OR of $m$ variables, with value $-1$ when true & Section~\ref{sec:intro} \\
 $\varepsilon$ & a lower bound on the influences relative to $\Var(f)$ & Corollary~\ref{cor:eps} \\
 $\tau$ & the exponent in Han's moments $\sum_S|\hat f(S)|^{2+2\tau}$ & Section~\ref{sec:tree} \\
 $\pi_k$, $H(\pi)$ & the influence distribution $\Inf_k(f)/I(f)$, and its entropy $\sum_k\pi_k\log_2(1/\pi_k)$ & Corollary~\ref{cor:pi} \\
-$D_i(f)$ & the drop $H(f)-\tfrac12H(f_+)-\tfrac12H(f_-)$ of coordinate $i$ (written $D_k$ in Section~\ref{sec:intro}) & Section~\ref{sec:intro} \\
+$D_i(f)$ & the drop $H(f)-\tfrac12H(f_+)-\tfrac12H(f_-)$ of coordinate $i$ & Section~\ref{sec:intro} \\
 $f_\pm$ & the restrictions $f_{i\to\pm1}$ & Section~\ref{sec:drop} \\
 $g$, $h$ & $\tfrac12(f_++f_-)$ and $\tfrac12(f_+-f_-)$, so that $f=g+x_ih$ & Section~\ref{sec:drop} \\
 $U$ & a random set with law $\mu$ & Section~\ref{sec:drop} \\
@@ -357,9 +361,9 @@ Lecture Notes in Comput. Sci. 7965, 780--791, doi:10.1007/978-3-642-39206-1\_66.
 \bibitem{OWZ11} R.~O'Donnell, J.~Wright, Y.~Zhou, The Fourier entropy-influence conjecture for certain classes of
 Boolean functions, ICALP 2011, Lecture Notes in Comput. Sci. 6755, 330--341.
 \bibitem{Shm1} Y.~Shmalo, The one-coordinate step in the Fourier entropy-influence conjecture,
-\url{https://github.com/yspennstate/fourier-entropy-influence-one-coordinate}, doi:10.5281/zenodo.24125404, 2026.
+preprint, \url{https://github.com/yspennstate/fourier-entropy-influence-one-coordinate}, doi:10.5281/zenodo.24125404, 2026.
 \bibitem{ShmLTF} Y.~Shmalo, Fourier entropy of threshold functions and their compositions,
-arXiv:2610.16069, 2026.
+preprint, arXiv:2610.16069, 2026.
 \bibitem{VW08} S.~Verd\'u, T.~Weissman, The information lost in erasures, IEEE Trans. Inform. Theory 54 (2008),
 5030--5058.
 \bibitem{WWW} A.~Wan, J.~Wright, C.~Wu, Decision trees, protocols, and the Fourier entropy-influence conjecture, ITCS 2014,
